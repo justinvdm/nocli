@@ -1,0 +1,32 @@
+{
+  "name": "nocli",
+  "version": "0.0.0",
+  "description": "tiny utility to run a node module via the cli",
+  "main": "nocli.js",
+  "bin": {
+    "nocli": "./nocli.js"
+  },
+  "scripts": {
+    "test": "mocha test nocli.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justinvdm/nocli.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "justinvdm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justinvdm/nocli/issues"
+  },
+  "homepage": "https://github.com/justinvdm/nocli",
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "yamljs": "^0.2.6",
+    "yargs": "^4.2.0"
+  }
+}
