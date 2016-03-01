@@ -29,6 +29,7 @@
   "dependencies": {
     "js-yaml": "^3.5.3",
     "lodash": "^4.5.1",
+    "require-relative": "^0.8.7",
     "yargs": "^4.2.0"
   }
 }

@@ -6,6 +6,7 @@ let open = require('fs').readFileSync;
 let _ = require('lodash');
 let extend = _.extend;
 let omit = _.omit;
+let relative = require('require-relative');
 
 
 let args = cli
@@ -19,4 +20,5 @@ let args = cli
 let opts = {};
 if (args.c) extend(opts, yaml(open(args.c)));
 extend(opts, omit(args, 'c', '_', 'help', '$0', 'nocli.js'));
-require(args._[0])(opts);
+
+relative(args._[0], process.cwd())(opts);
