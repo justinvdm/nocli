@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 'use strict';
 let cli = require('yargs');
 let yaml = require('js-yaml').safeLoad;
