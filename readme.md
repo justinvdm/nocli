@@ -38,6 +38,11 @@ $ nocli -c ./nyan.yml ./nyan.js
 
 ```
 
+```yaml
+# ./nyan.yml
+n: 2
+```
+
 ```js
 // ./nyan.js
 
@@ -67,12 +72,6 @@ function nyan(opts) {
 
 module.exports = nyan;
 ```
-
-```yaml
-# ./nyan.yml
-n: 2
-```
-
 
 ## install
 
