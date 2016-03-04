@@ -8,8 +8,9 @@ function fix(name) {
 }
 
 
-function run(cmd) {
-  return exec(`${__dirname}/../nocli.js ${cmd}`).output.trim();
+function run(args) {
+  let cmd = `${__dirname}/../nocli.js ${args}`;
+  return exec(cmd, {silent: true}).output.trim();
 }
 
 
