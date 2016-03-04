@@ -83,7 +83,7 @@ npm install -g nocli
 
 ```
 $ nocli --help
-Usage: /usr/local/bin/nocli [options] module
+Usage: nocli [options] module
 
 Options:
   --help  Show help                                                    [boolean]
