@@ -1,6 +1,6 @@
 {
   "name": "nocli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "tiny utility to run a node module via the cli",
   "main": "nocli.js",
   "type": "commonjs",
