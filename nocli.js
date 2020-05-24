@@ -1,24 +1,36 @@
 #!/usr/bin/env node
-'use strict';
-let cli = require('yargs');
-let yaml = require('js-yaml').safeLoad;
-let open = require('fs').readFileSync;
-let resolve = require('path').resolve;
-let _ = require('lodash');
-let extend = _.extend;
-let omit = _.omit;
+const cli = require('yargs')
+const yaml = require('js-yaml').safeLoad
+const read = require('fs').readFileSync
+const resolve = require('path').resolve
 
-
-let args = cli
+const args = cli
   .usage('Usage: $0 [options] module')
   .help('help')
   .demand(1)
-  .option('c', {describe: 'read options from yaml config file'})
-  .argv;
+  .option('config', {
+    alias: 'c',
+    describe: 'read options from yaml config file'
+  }).argv
 
+const opts = {
+  ...(args.config && yaml(read(args.c))),
+  ...parseArgs()
+}
 
-let opts = {};
-if (args.c) extend(opts, yaml(open(args.c)));
-extend(opts, omit(args, 'c', '_', 'help', '$0', 'nocli.js'));
+if (require.main === module) {
+  require(resolve(process.cwd(), args._[0]))(opts)
+}
 
-require(resolve(process.cwd(), args._[0]))(opts);
+function parseArgs() {
+  const result = { ...args }
+  delete result.config
+  delete result.c
+  delete result._
+  delete result.config
+  delete result.help
+  delete result.$0
+  return result
+}
+
+module.exports = opts

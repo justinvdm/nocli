@@ -1,34 +1,36 @@
-'use strict';
-let assert = require('assert');
-let exec = require('shelljs').exec;
-
+const test = require('ava')
+const exec = require('shelljs').exec
 
 function fix(name) {
-  return `${__dirname}/fixtures/${name}`;
+  return `${__dirname}/fixtures/${name}`
 }
-
 
 function run(args) {
-  let cmd = `${__dirname}/../nocli.js ${args}`;
-  return exec(cmd, {silent: true}).output.trim();
+  const cmd = `${__dirname}/../nocli.js ${args}`
+  return exec(cmd, { silent: true }).trim()
 }
 
+test('cli args support', t => {
+  const result = run(`--foo bar --baz 23 ${fix('simple.js')}`)
 
-describe(`nocli`, () => {
-  it(`should support cli options`, () => {
-    let result = run(`--foo bar --baz 23 ${fix('simple.js')}`);
+  t.deepEqual(JSON.parse(result), {
+    foo: 'bar',
+    baz: 23
+  })
+})
 
-    assert.deepEqual(result, JSON.stringify({
-      foo: 'bar',
-      baz: 23
-    }));
-  });
+test('yaml config file support', t => {
+  const result = run(`--config ${fix('simple.yml')} ${fix('simple.js')}`)
 
-  it(`should support reading from a yaml config file`, () => {
-    let result = run(`-c ${fix('simple.yml')} ${fix('simple.js')}`);
+  t.deepEqual(JSON.parse(result), {
+    foo: ['bar', 'baz']
+  })
+})
 
-    assert.deepEqual(result, JSON.stringify({
-      foo: ['bar', 'baz']
-    }));
-  });
-});
+test('yaml config file support with -c shorthand', t => {
+  const result = run(`-c ${fix('simple.yml')} ${fix('simple.js')}`)
+
+  t.deepEqual(JSON.parse(result), {
+    foo: ['bar', 'baz']
+  })
+})
