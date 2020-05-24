@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@oftherivier/tools": "0.1.35",
+    "@oftherivier/tools": "0.1.36",
     "shelljs": "0.8.4"
   },
   "dependencies": {
