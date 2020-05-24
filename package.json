@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "description": "tiny utility to run a node module via the cli",
   "main": "nocli.js",
+  "type": "commonjs",
   "bin": {
     "nocli": "./nocli.js"
   },
   "scripts": {
-    "test": "mocha tests/nocli.test.js"
+    "lint": "otr lint",
+    "format": "otr format",
+    "test": "otr test",
+    "release": "otr release",
+    "typetest": "otr typetest",
+    "checks": "yarn lint && yarn typetest && yarn test"
   },
   "repository": {
     "type": "git",
@@ -22,14 +28,23 @@
     "url": "https://github.com/justinvdm/nocli/issues"
   },
   "homepage": "https://github.com/justinvdm/nocli",
+  "oftherivier": {
+    "type": "vanilla",
+    "src": "src/index.js"
+  },
+  "renovate": {
+    "extends": [
+      "github>oftherivier/tools"
+    ]
+  },
   "devDependencies": {
-    "mocha": "^2.4.5",
-    "shelljs": "^0.6.0"
+    "@oftherivier/tools": "^0.1.35",
+    "shelljs": "^0.8.4"
   },
   "dependencies": {
     "js-yaml": "^3.5.3",
     "lodash": "^4.5.1",
     "require-relative": "^0.8.7",
-    "yargs": "^4.2.0"
+    "yargs": "^15.3.1"
   }
 }
